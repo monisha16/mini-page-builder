@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react';
+import React from 'react';
 import styles from './input.module.scss';
 
 const Input = ({ text, style, className, ...props }) => {

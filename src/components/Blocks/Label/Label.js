@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react';
+import React from 'react';
 import styles from './label.module.scss';
 
 const Label = ({ text, style, className, ...props }) => {

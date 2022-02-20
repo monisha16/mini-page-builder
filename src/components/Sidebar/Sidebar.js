@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import BlockItems from '../BlockItems/BlockItems';
 import styles from './sidebar.module.scss';
 import { DragDropContainer } from 'react-drag-drop-container';

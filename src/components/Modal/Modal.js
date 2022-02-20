@@ -1,5 +1,5 @@
 import { InlineIcon } from '@iconify/react';
-import React, { FormEvent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './modal.module.scss';
 
 export const FormInput = ({value,onChange,type = 'text',placeholder = '',id,
