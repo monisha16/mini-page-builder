@@ -1,0 +1,16 @@
+.Home {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 100vh;
+
+    &__canvas {
+      width:100%;
+      background-color: rgb(252, 252, 252);
+    }
+
+    &__sidebar {
+      width:25%;
+      background-color: #2d2d2d;
+    }
+}

@@ -1,0 +1,20 @@
+.sidebar
+{
+    // background-color: #2d2d2d;
+    padding: 0.2rem 2rem;
+    color: white;
+
+    &__heading{
+        margin-bottom: 1.4rem;
+    }
+    &__shadowElement {
+    position: relative;
+    pointer-events: none;
+    }
+
+    &__shadowElementInner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    }
+}
