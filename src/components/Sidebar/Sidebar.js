@@ -52,8 +52,9 @@ function Sidebar() {
       <div className={styles.sidebar}>
         <h1 className={styles['sidebar__heading']}>BLOCKS</h1>
         {
-          items.map((item, index) => {
-            return(<DragDropContainer
+          items.map((item) => {
+            return(
+              <DragDropContainer
               targetKey="items"
               key={item.type}
               dragElemOpacity={1}
@@ -65,8 +66,8 @@ function Sidebar() {
                   <BlockItems 
                     dragging={isItemDragging(item)}
                     item={item}
-                    className={styles.sidebar__shadowElementInner}
-                    isShadowElement />
+                    // className={styles.sidebar__shadowElementInner}
+                     />
                 </div>
               }
             >

@@ -1,0 +1,33 @@
+.BlockWrapper {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  outline: none;
+  touch-action: none;
+  pointer-events: visible;
+  user-select: none;
+
+  &:hover {
+    outline: 2px solid rgba(217, 85, 9, 0.3);
+    cursor: grab;
+  }
+
+  &:active {
+    cursor: grabbing;
+    outline: 2px solid rgb(217, 84, 9);
+  }
+}
+
+.BlockWrapper * {
+  pointer-events: none;
+}
+
+.BlockWrapper__active {
+  outline: 2px solid rgb(217, 84, 9);
+  cursor: grabbing;
+
+  &:hover {
+    outline: 2px solid rgb(217, 85, 9);
+  }
+}
