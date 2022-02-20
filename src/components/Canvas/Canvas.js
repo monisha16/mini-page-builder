@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, MouseEvent, KeyboardEvent } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { DropTarget } from 'react-drag-drop-container';
 import BlockWrapper from '../BlockWrapper/BlockWrapper';
 import Label from '../Blocks/Label/Label';
@@ -14,7 +14,7 @@ function Canvas() {
   const [modal, setModal] = useState(false);
   const [selectedBlock, setSelectedBlock] = useState(null);
   const [initialBlock, setInitialBlock] = useState(null);
-
+// console.log("Canvas");
   /** get canvasBlocks details from LS */
   useEffect(() => {
     const LocalStorage = localStorage.getItem('canvasBlocks');
@@ -35,6 +35,7 @@ function Canvas() {
 
   /** on drop of block onto the canvas */
   const handleDrop = (e) => {
+    // console.log("onDrop")
     e.preventDefault();
     setSelectedBlock(null);
     if (e.dragData) {
