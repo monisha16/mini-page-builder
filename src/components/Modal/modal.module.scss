@@ -1,0 +1,145 @@
+.Modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 0.2s ease-in-out;
+  z-index: 50;
+  pointer-events: visible;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.Modal__overlay {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: auto;
+  padding: 20px;
+}
+
+.Modal__content {
+  background-color: #ffffff;
+  border-radius: 5px;
+  max-width: 424px;
+  height: auto;
+  margin: 2% auto 2%;
+  pointer-events: all;
+  transition: all 0.2s ease-in-out;
+  transform: scale(0.95);
+  outline: none;
+}
+
+.Modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 21px;
+  border-bottom: 1px solid #ededed;
+
+  &__Title {
+    color: #000000;
+    font-weight: 600;
+    font-size: 1.3rem;
+  }
+
+  &__CloseButton {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    color: #cccccc;
+    font-size: 1.8rem;
+    display: flex;
+    cursor: pointer;
+    padding: 0;
+    position: relative;
+    transition: all 0.2s ease-out;
+
+    &::after {
+      transition: all 0.2s ease-out;
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #f8f8f8;
+      z-index: -1;
+      border-radius: 4px;
+      opacity: 0;
+    }
+
+    &:hover {
+      color: #b8b8b8;
+
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.Modal__body {
+  padding: 25px 21px;
+}
+
+.Modal__open {
+  visibility: visible;
+  opacity: 1;
+
+  .Modal__content {
+    transform: scale(1);
+  }
+}
+
+.Modal__inputs {
+  display: flex;
+  flex-direction: column;
+}
+
+.Modal__actionButtons {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.FormInput__label {
+  font-size: 0.9rem;
+  font-weight: 400;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.FormInput__input {
+  padding: 10px 14px;
+  width: 20rem;
+  border-radius: 2px;
+  font-size: 1rem;
+  border: 1px solid #d9d9d9;
+  outline: none;
+  margin-bottom:.5rem;
+}
+
+.FormButton {
+  height: 40px;
+  padding: 0 13px;
+  color: white;
+  background-color: #0044c1;
+  outline: none;
+  border: none;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 400;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(0, 68, 193, 0.9);
+  }
+}

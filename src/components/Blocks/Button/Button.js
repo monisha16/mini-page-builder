@@ -1,7 +1,7 @@
 import React, { CSSProperties } from 'react';
 import styles from './button.module.scss';
 
-export const Button = ({ text, style, className, ...props }) => {
+const Button = ({ text, style, className, ...props }) => {
   return (
     <button type="button" className={`${styles.Button} ${className}`} style={style} {...props}>
       {text}
@@ -9,3 +9,4 @@ export const Button = ({ text, style, className, ...props }) => {
   );
 };
 
+export default Button;
