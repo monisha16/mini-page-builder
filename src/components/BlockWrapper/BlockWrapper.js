@@ -9,7 +9,7 @@ function BlockWrapper({children,block,updateCanvasBlock,setSelectedBlock,selecte
         return () => {
             setSelectedBlock(null);
         };
-    },[]);
+    });
 
     const onDragStop = (e, data) => {
         updateCanvasBlock(block.id, {
