@@ -15,8 +15,9 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        min-width: 10rem;
-        width:17rem;
+        min-width: 15%;
+        max-width:100%;
+        // width:17rem;
         position: relative;
         pointer-events: none;
         margin-bottom: .5rem;

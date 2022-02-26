@@ -1,12 +1,15 @@
 .sidebar
 {
-    padding: 0.2rem 1.5rem;
+
+    padding: 0.2rem 2rem;
+    color: white;
     background-color: #2d2d2d;
-    height: 100%;
-    z-index: 1;
-    width:19rem;
-    color:white;
-    position: fixed;
+    flex-basis: 30%;
+    max-width: 300px;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    z-index:1;
 
     &__heading{
         margin-bottom: 1.4rem;

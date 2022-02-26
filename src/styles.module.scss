@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+
 .canvas {
-      display:flex;
+      display: flex;
       flex-direction: row-reverse;
-      width:100%;
+      width:100vw;
+      height: 100vh;
       background-color: rgb(252, 252, 252);
-    }
+}
