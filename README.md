@@ -1,12 +1,22 @@
 ## Usage
 1. Drag and Drop Elements from Sidebar to the Board.
 
-1. Drag the Elements on the canvas to change their position.
+2. Drag the Elements on the canvas to change their position.
 
-1. Click on an element on the canvas to select it.
+3. Click on an element on the canvas to select it.
 
-1. Pressing `Delete` on keyboard will delete the element from the board.
+4. Pressing `Delete` on keyboard will delete the element from the board.
 
-1. Pressing `Enter` on keyboard will open a modal where you can edit element configurations.
+5. Pressing `Enter` on keyboard will open a modal where you can edit element configurations.
 
-1. Edit Element configurations (Text, X, Y, Font Size, Font Weight) and click `Save Changes` to update element state.
+6. Edit Element configurations (Text, X, Y, Font Size, Font Weight) and click `Save Changes` to update element state.
+
+## Local Environment Setup
+
+1. Install project dependencies
+   ```bash
+   npm install
+   ```
+2. Launch live server
+   ```bash
+   npm run start
