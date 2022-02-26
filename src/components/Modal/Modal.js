@@ -22,6 +22,7 @@ export const FormInput = ({value,onChange,type = 'text',placeholder = '',id,
                 step={step}
                 min={min}
                 max={max}
+                required
             />
         </div>
     );

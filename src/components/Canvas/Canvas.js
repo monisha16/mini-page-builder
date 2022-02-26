@@ -6,17 +6,20 @@ import Button from '../Blocks/Button/Button';
 import Input from '../Blocks/Input/Input';
 import Modal from '../Modal/Modal';
 import { v4 as uuidv4 } from 'uuid';
-import styles from './canvas.module.scss';
+import Sidebar from '../Sidebar/Sidebar';
 
-function Canvas() {
+const Canvas=()=> {
   const [canvasBlocks, setCanvasBlocks] = useState([]);
   const canvasRef = useRef(null);
   const [modal, setModal] = useState(false);
   const [selectedBlock, setSelectedBlock] = useState(null);
   const [initialBlock, setInitialBlock] = useState(null);
-// console.log("Canvas");
+
   /** get canvasBlocks details from LS */
   useEffect(() => {
+    let droptarget = document.querySelector('.droptarget')
+    droptarget.style.display = "flex";
+    droptarget.style.flex = 1;
     const LocalStorage = localStorage.getItem('canvasBlocks');
     if (LocalStorage) {
       setCanvasBlocks(JSON.parse(LocalStorage));
@@ -35,7 +38,6 @@ function Canvas() {
 
   /** on drop of block onto the canvas */
   const handleDrop = (e) => {
-    // console.log("onDrop")
     e.preventDefault();
     setSelectedBlock(null);
     if (e.dragData) {
@@ -50,11 +52,10 @@ function Canvas() {
           fontWeight: '',
         },
       });
-      console.log("InitialBlock", initialBlock)
       setModal(true);
     }
   };
-  
+
   /** deseleting the block on canvas */
   const handleCanvasOnClick = (e) => {
     if (e.target === canvasRef.current) {
@@ -84,9 +85,8 @@ function Canvas() {
     );
   };
 
-/** returns the block component */
-  const getBlock = (block) => {
-    console.log("BLOCK in C", block)
+  /** returns the block component */
+  const RenderedBlock = ({ block }) => {
     const style = {
       fontSize: `${block.details.fontSize}px`,
       fontWeight: parseInt(`${block.details.fontWeight}`, 10) || 400,
@@ -149,44 +149,46 @@ function Canvas() {
   };
 
   return (
-    <>
-    <DropTarget targetKey="items" dropData={{ foo: 'bar' }} onHit={handleDrop}>
-      <div
-        ref={canvasRef}
-        className={styles.canvas}
-        onDragOver={handleOnDragOver}
-        onClick={handleCanvasOnClick}
-        onKeyDown={handleOnKeyDown}
-        role="button"
-        tabIndex={-1}
-      >
-        {canvasBlocks.map((block) => {
-          console.log("BLOCK in wrapper", block)
-          return (
-            /** Making each Block draggable through BlockWrapper */
-            <BlockWrapper
-              key={block.id}
-              block={block}
-              updateCanvasBlock={updateCanvasBlocks}
-              setSelectedBlock={setSelectedBlock}
-              selectedBlock={selectedBlock}
-            >
-              {getBlock(block)}
-            </BlockWrapper>
-          );
-        })}
+  <>
+    <Sidebar></Sidebar>
+    <div className='box' style={{display:"flex",flex:1}}>
+      <DropTarget targetKey="items" dropData={{ foo: 'bar' }} onHit={handleDrop}>
+        <div
+          style={{ display: "flex", flex: 1, "height": "100vh", width: "100%" }}
+          ref={canvasRef}
+          onDragOver={handleOnDragOver}
+          onClick={handleCanvasOnClick}
+          onKeyDown={handleOnKeyDown}
+          role="button"
+          tabIndex={-1}
+        >
+          {canvasBlocks.map((block) => {
+            return (
+              // Making each Block draggable through BlockWrapper
+              <BlockWrapper
+                key={block.id}
+                block={block}
+                updateCanvasBlock={updateCanvasBlocks}
+                setSelectedBlock={setSelectedBlock}
+                selectedBlock={selectedBlock}
+              >
+              <RenderedBlock block={block} />
+              </BlockWrapper>
+            );
+          })}
+        </div>
+      </DropTarget>
+
+      {modal && <Modal
+        open={modal}
+        selectedBlock={selectedBlock}
+        initialBlock={initialBlock}
+        closeModal={onModalClose}
+        onBlockSave={onBlockSave}
+        onNewBlockSave={onNewBlockSave}
+      />}
       </div>
-    </DropTarget>
-    { modal && <Modal
-      open={modal}
-      selectedBlock={selectedBlock}
-      initialBlock={initialBlock}
-      closeModal={onModalClose}
-      onBlockSave={onBlockSave}
-      onNewBlockSave={onNewBlockSave}
-    />}
-    </>
+  </>
   )
 }
-
-export default Canvas
+export default Canvas;

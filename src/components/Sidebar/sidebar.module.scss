@@ -1,20 +1,16 @@
 .sidebar
 {
-    // background-color: #2d2d2d;
-    padding: 0.2rem 2rem;
-    color: white;
+    padding: 0.2rem 1.5rem;
+    background-color: #2d2d2d;
+    height: 100%;
+    z-index: 1;
+    width:19rem;
+    color:white;
+    position: fixed;
 
     &__heading{
         margin-bottom: 1.4rem;
-    }
-    &__shadowElement {
-    position: relative;
-    pointer-events: none;
+        font-size:1.25rem;
     }
 
-    &__shadowElementInner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    }
 }

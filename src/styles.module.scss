@@ -1,18 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
-.Home {
-  display:flex;
-  flex-direction: row;
-  justify-content: space-between;
-  height: 100vh;
-
-    &__canvas {
+.canvas {
+      display:flex;
+      flex-direction: row-reverse;
       width:100%;
       background-color: rgb(252, 252, 252);
     }
-
-    &__sidebar {
-      z-index:40;
-      width:25%;
-      background-color: #2d2d2d;
-    }
-}

@@ -1,16 +1,10 @@
-import React, { useRef, useEffect } from 'react';
-import {Draggable} from 'react-draggable';
+import React, { useRef} from 'react';
+import Draggable from 'react-draggable';
 import styles from './blockwrapper.module.scss';
 
-function BlockWrapper({children,block,updateCanvasBlock,setSelectedBlock,selectedBlock}) {
+const BlockWrapper = ({children,block,updateCanvasBlock,setSelectedBlock,selectedBlock})=> {
     const blockRef = useRef(null);
-
-    useEffect(() => {
-        return () => {
-            setSelectedBlock(null);
-        };
-    });
-
+    
     const onDragStop = (e, data) => {
         updateCanvasBlock(block.id, {
             ...block.details,
@@ -35,6 +29,7 @@ function BlockWrapper({children,block,updateCanvasBlock,setSelectedBlock,selecte
     const isSelected = () => selectedBlock?.id === block.id;
 
     return (
+        <>
         <Draggable
             nodeRef={blockRef}
             bounds="parent"
@@ -52,7 +47,8 @@ function BlockWrapper({children,block,updateCanvasBlock,setSelectedBlock,selecte
                 {children}
             </div>
         </Draggable>
+        </>
     )
 }
 
-export default BlockWrapper
+export default BlockWrapper;
