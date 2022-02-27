@@ -1,6 +1,6 @@
 import React from 'react';
 import { DragDropContainer } from 'react-drag-drop-container';
-import BlockItem from '../BlockItem/BlockItem';
+import ElementItem from '../ElementItem/ElementItem';
 import styles from './sidebar.module.scss';
 
 const config = {
@@ -11,20 +11,20 @@ const config = {
   fontWeight: '',
 };
 
-const items= [
+const elements= [
   {
     id: '',
-    type: 'Label',
+    elementType: 'Label',
     config: { ...config },
   },
   {
     id: '',
-    type: 'Input',
+    elementType: 'Input',
     config: { ...config },
   },
   {
     id: '',
-    type: 'Button',
+    elementType: 'Button',
     config: { ...config },
   },
 ];
@@ -33,24 +33,24 @@ const Sidebar = () => {
     return (
         <div className={styles.Sidebar}>
           <div className={styles.Sidebar__header}>BLOCKS</div>
-          <div className={styles.BlockItem}>
-          {items.map((element) => (
+          <div className={styles.ElementList}>
+          {elements.map((element) => (
             <DragDropContainer
-              targetKey="items"
-              key={element.type}
+              targetKey="elements"
+              key={element.elementType}
               dragElemOpacity={1}
               dragData={element}
               customDragElement={
-                <div className={styles.BlockItem__shadowElement}>
-                  <BlockItem
-                    name={element.type}
-                    className={styles.BlockItem__shadowElementInner}
+                <div className={styles.ElementList__shadowElement}>
+                  <ElementItem
+                    name={element.elementType}
+                    className={styles.ElementList__shadowElementInner}
                     isShadowElement
                   />
                 </div>
               }
             >
-              <BlockItem name={element.type} /> 
+              <ElementItem name={element.elementType} /> 
             </DragDropContainer>
           ))}
           </div>

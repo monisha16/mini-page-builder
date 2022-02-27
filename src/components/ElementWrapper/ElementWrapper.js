@@ -1,17 +1,18 @@
-import React, { useRef } from 'react';
+import React, { useRef} from 'react';
 import Draggable from 'react-draggable';
-import styles from './blockwrapper.module.scss';
-const BlockWrapper = ({
+import styles from './elementWrapper.module.scss';
+
+const ElementWrapper= ({
     children,
     element,
-    updateCanvasElement,
+    updateBoardElement,
     setSelectedElement,
     selectedElement,
 }) => {
     const elementRef = useRef(null);
 
     const onDragStop = (e, data) => {
-        updateCanvasElement(element.id, {
+        updateBoardElement(element.id, {
             ...element.config,
             x: data.x.toString(),
             y: data.y.toString(),
@@ -20,7 +21,7 @@ const BlockWrapper = ({
     };
 
     const onDrag = (e, data) => {
-        updateCanvasElement(element.id, {
+        updateBoardElement(element.id, {
             ...element.config,
             x: data.x.toString(),
             y: data.y.toString(),
@@ -44,7 +45,7 @@ const BlockWrapper = ({
         >
             <div
                 ref={elementRef}
-                className={`${styles.BlockWrapper} ${isSelected() ? styles.BlockWrapper__active : ''}`}
+                className={`${styles.ElementWrapper} ${isSelected() ? styles.ElementWrapper__active : ''}`}
                 role="button"
                 tabIndex={0}
             >
@@ -54,4 +55,4 @@ const BlockWrapper = ({
     );
 };
 
-export default BlockWrapper;
+export default ElementWrapper;

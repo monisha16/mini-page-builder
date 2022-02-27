@@ -2,13 +2,13 @@
 .Home {
   display: grid;
   grid-template-columns: 1fr auto;
-  grid-template-areas: 'canvas sidebar';
+  grid-template-areas: 'board sidebar';
   height: 100vh;
   overflow:hidden;
 }
 
-.Home__canvas {
-  grid-area: canvas;
+.Home__board {
+  grid-area: board;
 }
 
 .Home__sidebar {
