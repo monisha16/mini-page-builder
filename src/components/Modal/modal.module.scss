@@ -41,18 +41,18 @@
   padding: 18px 21px;
   border-bottom: 1px solid #ededed;
 
-  &__Title {
+  &Title {
     color: #000000;
     font-weight: 600;
     font-size: 1.3rem;
   }
 
-  &__CloseButton {
+  &CloseButton {
     outline: none;
     border: none;
     background-color: transparent;
     color: #cccccc;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     display: flex;
     cursor: pointer;
     padding: 0;
