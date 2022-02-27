@@ -13,17 +13,17 @@
   }
 
 }
-.BlockItem {
+.ElementList {
   display: grid;
   gap: 9px;
 }
 
-.BlockItem__shadowElement {
+.ElementList__shadowElement {
   position: relative;
   pointer-events: none;
 }
 
-.BlockItem__shadowElementInner {
+.ElementList__shadowElementInner {
   position: absolute;
   top: 0;
   left: 0;
