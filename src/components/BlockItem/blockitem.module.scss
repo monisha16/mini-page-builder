@@ -1,0 +1,39 @@
+.BlockItem {
+  height: 49px;
+  background-color: #ffffff;
+  cursor: grab;
+  transition: all 0.2s ease-out;
+  border-radius: 4px;
+  padding: 0 11px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-width: 280px;
+  position: relative;
+  pointer-events: none;
+
+  &__icon {
+    // color: #d5d5d5;
+    margin-right: 10px;
+    height: 1.5rem;
+    filter: invert(100%) sepia(0%) saturate(5588%) hue-rotate(198deg) brightness(88%) contrast(89%);
+  }
+
+  &__name {
+    color: #000000;
+    font-weight: 300;
+  }
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.BlockItem__dragging {
+  transform: scale(0.99);
+  opacity: 0.9;
+}
+
+.BlockItem__shadow {
+  box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.07);
+}

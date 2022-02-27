@@ -1,13 +1,13 @@
-import { InlineIcon } from '@iconify/react';
 import React, { useEffect, useState } from 'react';
 import styles from './modal.module.scss';
 
 export const FormInput = ({value,onChange,type = 'text',placeholder = '',id,
-                            label,min,max,step,}) => 
+                            label,min,max,step,minLength, maxLength}) => 
 {
     return (
         <div className={styles.FormInput}>
-            {label && (
+            {label && 
+            (   
                 <label className={styles.FormInput__label} htmlFor={id}>
                     {label}
                 </label>
@@ -20,6 +20,8 @@ export const FormInput = ({value,onChange,type = 'text',placeholder = '',id,
                 type={type}
                 id={id}
                 step={step}
+                minLength={minLength}
+                maxLength={maxLength}
                 min={min}
                 max={max}
                 required
@@ -36,9 +38,15 @@ export const FormButton = ({ style, text }) => {
     );
 };
 
-const Modal = ({open,closeModal,onBlockSave,onNewBlockSave,selectedBlock,initialBlock,}) => {
-    console.log("Inside Modal component", selectedBlock);
-    const [formState, setFormState] = useState({
+const Modal = ({
+    open,
+    closeModal,
+    onElementSave,
+    onNewElementSave,
+    selectedElement,
+    initialElement,
+}) => {
+    const [formState, _setFormState] = useState({
         text: '',
         x: '',
         y: '',
@@ -46,30 +54,30 @@ const Modal = ({open,closeModal,onBlockSave,onNewBlockSave,selectedBlock,initial
         fontWeight: '',
     });
 
-    const setFormData = (name, value) => {
-        setFormState({ ...formState, [name]: value });
+    const setFormState = (name, value) => {
+        _setFormState({ ...formState, [name]: value });
     };
 
     useEffect(() => {
         // Set initial form values
-        if (initialBlock) {
-            setFormState({
-                text: initialBlock.details.text,
-                x: initialBlock.details.x,
-                y: initialBlock.details.y,
-                fontSize: initialBlock.details.fontSize,
-                fontWeight: initialBlock.details.fontWeight,
+        if (initialElement) {
+            _setFormState({
+                text: initialElement.config.text,
+                x: initialElement.config.x,
+                y: initialElement.config.y,
+                fontSize: initialElement.config.fontSize,
+                fontWeight: initialElement.config.fontWeight,
             });
-        } else if (selectedBlock) {
-            setFormState({
-                text: selectedBlock.details.text,
-                x: selectedBlock.details.x,
-                y: selectedBlock.details.y,
-                fontSize: selectedBlock.details.fontSize,
-                fontWeight: selectedBlock.details.fontWeight,
+        } else if (selectedElement) {
+            _setFormState({
+                text: selectedElement.config.text,
+                x: selectedElement.config.x,
+                y: selectedElement.config.y,
+                fontSize: selectedElement.config.fontSize,
+                fontWeight: selectedElement.config.fontWeight,
             });
         } else {
-            setFormState({
+            _setFormState({
                 text: '',
                 x: '',
                 y: '',
@@ -77,26 +85,23 @@ const Modal = ({open,closeModal,onBlockSave,onNewBlockSave,selectedBlock,initial
                 fontWeight: '',
             });
         }
-    }, [selectedBlock, initialBlock]);
+    }, [selectedElement, initialElement]);
 
     const handleFormSubmit = (e) => {
-        
         e.preventDefault();
-        if (selectedBlock) {
-            console.log("handleFormSubmit-SB", e)
-            onBlockSave(selectedBlock.id, formState);
+        if (selectedElement) {
+            onElementSave(selectedElement.id, formState);
         } else {
-            console.log("handleFormSubmit", e)
-            onNewBlockSave(formState);
+            onNewElementSave(formState);
         }
     };
 
     const getModalTitle = () => {
-        if (initialBlock) {
-            return `Add ${initialBlock.type}`;
+        if (initialElement) {
+            return `Add ${initialElement.elementType}`;
         }
-        if (selectedBlock) {
-            return `Edit ${selectedBlock.type}`;
+        if (selectedElement) {
+            return `Edit ${selectedElement.elementType}`;
         }
         return '';
     };
@@ -106,9 +111,10 @@ const Modal = ({open,closeModal,onBlockSave,onNewBlockSave,selectedBlock,initial
             <div className={styles.Modal__overlay}>
                 <div className={styles.Modal__content} tabIndex={-1}>
                     <div className={styles.Modal__header}>
-                        <div className={styles.Modal__header__Title}>{getModalTitle()}</div>
-                        <button type="button" className={styles.Modal__header__CloseButton} onClick={closeModal}>
-                            <InlineIcon icon="uil:times" />
+                        <div className={styles.Modal__headerTitle}>{getModalTitle()}</div>
+                        <button type="button" className={styles.Modal__headerCloseButton} onClick={closeModal}>
+                            {/* <InlineIcon icon="uil:times" /> */}
+                            X
                         </button>
                     </div>
 
@@ -119,36 +125,39 @@ const Modal = ({open,closeModal,onBlockSave,onNewBlockSave,selectedBlock,initial
                                     id="text"
                                     label="Text"
                                     value={formState.text}
-                                    onChange={(value) => setFormData('text', value)}
+                                    onChange={(value) => setFormState('text', value)}
+                                    minLength="2"
+                                    maxLength="25"
                                 />
                                 <FormInput
                                     type="number"
                                     id="x"
                                     label="X"
                                     value={formState.x}
-                                    onChange={(value) => setFormData('x', value)}
+                                    onChange={(value) => setFormState('x', value)}
                                 />
                                 <FormInput
                                     type="number"
                                     id="y"
                                     label="Y"
                                     value={formState.y}
-                                    onChange={(value) => setFormData('y', value)}
+                                    onChange={(value) => setFormState('y', value)}
                                 />
                                 <FormInput
                                     type="number"
                                     id="fontSize"
                                     label="Font Size"
                                     value={formState.fontSize}
-                                    onChange={(value) => setFormData('fontSize', value)}
+                                    onChange={(value) => setFormState('fontSize', value)}
                                     min={0}
+                                    max={24}
                                 />
                                 <FormInput
                                     type="number"
                                     id="fontWeight"
                                     label="Font Weight"
                                     value={formState.fontWeight}
-                                    onChange={(value) => setFormData('fontWeight', value)}
+                                    onChange={(value) => setFormState('fontWeight', value)}
                                     step={100}
                                     min={100}
                                     max={900}

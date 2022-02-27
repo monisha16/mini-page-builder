@@ -1,60 +1,61 @@
 import React from 'react';
-import BlockItems from '../BlockItems/BlockItems';
-import styles from './sidebar.module.scss';
 import { DragDropContainer } from 'react-drag-drop-container';
+import BlockItem from '../BlockItem/BlockItem';
+import styles from './sidebar.module.scss';
 
-function Sidebar() {
-  let config = {
-    text: '',
-    x: '',
-    y: '',
-    fontSize: '',
-    fontWeight: '',
-  };
+const config = {
+  text: '',
+  x: '',
+  y: '',
+  fontSize: '',
+  fontWeight: '',
+};
 
-  const items = [
-    {
-      id: '',
-      type: 'Label',
-      details: { ...config }
-    },
-    {
-      id: '',
-      type: 'Input',
-      details: { ...config }
-    },
-    {
-      id: '',
-      type: 'Button',
-      details: { ...config }
-    }
-  ];
+const items= [
+  {
+    id: '',
+    type: 'Label',
+    config: { ...config },
+  },
+  {
+    id: '',
+    type: 'Input',
+    config: { ...config },
+  },
+  {
+    id: '',
+    type: 'Button',
+    config: { ...config },
+  },
+];
 
-  return (
-    <div className={styles.sidebar}>
-      <h1 className={styles['sidebar__heading']}>BLOCKS</h1>
-      {
-        items.map((item) => {
-          return (
+const Sidebar = () => {
+    return (
+        <div className={styles.Sidebar}>
+          <div className={styles.Sidebar__header}>BLOCKS</div>
+          <div className={styles.BlockItem}>
+          {items.map((element) => (
             <DragDropContainer
               targetKey="items"
-              key={item.type}
+              key={element.type}
               dragElemOpacity={1}
-              dragData={item}
+              dragData={element}
               customDragElement={
-                <div>
-                  <BlockItems
-                    item={item}
+                <div className={styles.BlockItem__shadowElement}>
+                  <ElementItem
+                    name={element.type}
+                    className={styles.BlockItem__shadowElementInner}
+                    isShadowElement
                   />
                 </div>
               }
             >
-              <BlockItems item={item} key={item.type} />
-            </DragDropContainer>)
-        })
-      }
-    </div>
-  )
-}
+              <ElementItem name={element.type} /> 
+            </DragDropContainer>
+          ))}
+          </div>
+        </div>
+    );
+};
 
 export default Sidebar;

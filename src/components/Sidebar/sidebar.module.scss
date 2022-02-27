@@ -1,19 +1,30 @@
-.sidebar
-{
+.Sidebar {
+  width: 326px;
+  background-color: #2d2d2d;
+  padding: 19px 23px;
+  height: 100%;
+  z-index: 1;
+  position: relative;
 
-    padding: 0.2rem 2rem;
+  &__header {
     color: white;
-    background-color: #2d2d2d;
-    flex-basis: 30%;
-    max-width: 300px;
-    min-width: 200px;
-    display: flex;
-    flex-direction: column;
-    z-index:1;
+    font-weight: 700;
+    margin-bottom: 17px;
+  }
 
-    &__heading{
-        margin-bottom: 1.4rem;
-        font-size:1.25rem;
-    }
+}
+.BlockItem {
+  display: grid;
+  gap: 9px;
+}
 
+.BlockItem__shadowElement {
+  position: relative;
+  pointer-events: none;
+}
+
+.BlockItem__shadowElementInner {
+  position: absolute;
+  top: 0;
+  left: 0;
 }

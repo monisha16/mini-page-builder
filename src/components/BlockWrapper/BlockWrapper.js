@@ -1,45 +1,49 @@
-import React, { useRef} from 'react';
+import React, { useRef } from 'react';
 import Draggable from 'react-draggable';
 import styles from './blockwrapper.module.scss';
+const BlockWrapper = ({
+    children,
+    element,
+    updateCanvasElement,
+    setSelectedElement,
+    selectedElement,
+}) => {
+    const elementRef = useRef(null);
 
-const BlockWrapper = ({children,block,updateCanvasBlock,setSelectedBlock,selectedBlock})=> {
-    const blockRef = useRef(null);
-    
     const onDragStop = (e, data) => {
-        updateCanvasBlock(block.id, {
-            ...block.details,
+        updateCanvasElement(element.id, {
+            ...element.config,
             x: data.x.toString(),
             y: data.y.toString(),
         });
-        setSelectedBlock({ ...block });
+        setSelectedElement({ ...element });
     };
 
     const onDrag = (e, data) => {
-        updateCanvasBlock(block.id, {
-            ...block.details,
+        updateCanvasElement(element.id, {
+            ...element.config,
             x: data.x.toString(),
             y: data.y.toString(),
         });
     };
 
     const handleOnMouseDown = (e) => {
-        setSelectedBlock(block);
+        setSelectedElement(element);
     };
 
-    const isSelected = () => selectedBlock?.id === block.id;
+    const isSelected = () => selectedElement?.id === element.id;
 
     return (
-        <>
         <Draggable
-            nodeRef={blockRef}
+            nodeRef={elementRef}
             bounds="parent"
-            position={{ x: parseInt(block.details.x, 10), y: parseInt(block.details.y, 10) }}
+            position={{ x: parseInt(element.config.x, 10), y: parseInt(element.config.y, 10) }}
             onDrag={onDrag}
             onStop={onDragStop}
             onMouseDown={handleOnMouseDown}
         >
             <div
-                ref={blockRef}
+                ref={elementRef}
                 className={`${styles.BlockWrapper} ${isSelected() ? styles.BlockWrapper__active : ''}`}
                 role="button"
                 tabIndex={0}
@@ -47,8 +51,7 @@ const BlockWrapper = ({children,block,updateCanvasBlock,setSelectedBlock,selecte
                 {children}
             </div>
         </Draggable>
-        </>
-    )
-}
+    );
+};
 
 export default BlockWrapper;
