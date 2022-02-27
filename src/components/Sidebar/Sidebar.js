@@ -42,7 +42,7 @@ const Sidebar = () => {
               dragData={element}
               customDragElement={
                 <div className={styles.BlockItem__shadowElement}>
-                  <ElementItem
+                  <BlockItem
                     name={element.type}
                     className={styles.BlockItem__shadowElementInner}
                     isShadowElement
@@ -50,7 +50,7 @@ const Sidebar = () => {
                 </div>
               }
             >
-              <ElementItem name={element.type} /> 
+              <Block name={element.type} /> 
             </DragDropContainer>
           ))}
           </div>
