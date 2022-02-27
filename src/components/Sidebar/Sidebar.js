@@ -50,7 +50,7 @@ const Sidebar = () => {
                 </div>
               }
             >
-              <Block name={element.type} /> 
+              <BlockItem name={element.type} /> 
             </DragDropContainer>
           ))}
           </div>
